@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AirlineApp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="flightly">Flightly</string>
+    <string name="flightly_description">Your flight schedule app</string>
+    <string name="home_header">Flight Schedule</string>
+</resources>
