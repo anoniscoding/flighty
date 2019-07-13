@@ -20,6 +20,63 @@
                 layout="@layout/schedule_toolbar"
                 android:id="@+id/scheduleToolbar"/>
 
+        <TextView
+                android:id="@+id/totalSchedules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:textSize="22sp"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/scheduleToolbar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="@dimen/dp32"
+                android:layout_marginStart="@dimen/dp28"
+        />
+
+        <TextView
+                android:id="@+id/totalSchedulesSubscript"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  results shown"
+                android:textSize="@dimen/sp16"
+                android:textColor="@color/darkGrey"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="@+id/totalSchedules"
+                app:layout_constraintLeft_toRightOf="@+id/totalSchedules"
+                android:layout_marginTop="8dp"/>
+
+        <ProgressBar
+                android:id="@+id/loader"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:theme="@style/ProgressBarTheme"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/flightList"
+                app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/flightList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/totalSchedules"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="@dimen/dp20"
+        >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.constraintlayout.widget.Group
+                android:id="@+id/flightDetailsGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="flightList,totalSchedules, totalSchedulesSubscript"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

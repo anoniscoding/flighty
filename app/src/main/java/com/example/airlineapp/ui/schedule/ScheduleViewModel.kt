@@ -18,6 +18,9 @@ class ScheduleViewModel @Inject constructor(private val _repository: ScheduleCon
     private val _errorMsg = MutableLiveData<String>()
     val errorMsg: LiveData<String> = _errorMsg
 
+    private val _totalSchedules = MutableLiveData<String>()
+    val totalSchedules: LiveData<String> = _totalSchedules
+
     fun fetchSchedules(location: ScheduleLocation) {
         _compositeDisposable.add(
             _repository.getAirlineSchedules(location).subscribe(this::onAirlineScheduleSuccess, this::onError)
@@ -26,6 +29,7 @@ class ScheduleViewModel @Inject constructor(private val _repository: ScheduleCon
 
     private fun onAirlineScheduleSuccess(flightSchedules: List<Schedule>) {
         _schedules.value = flightSchedules
+        _totalSchedules.value = flightSchedules.size.toString()
     }
 
     private fun onError(error: Throwable) {

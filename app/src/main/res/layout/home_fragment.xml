@@ -86,7 +86,7 @@
                 android:textSize="@dimen/sp16"
                 android:textAllCaps="false"
                 android:layout_marginTop="@dimen/dp60"
-                android:onClick="@{(v) -> viewModel.onSearchClick()}"
+                android:onClick="@{(v) -> viewModel.onSearchFlightClick()}"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/destination"
         />

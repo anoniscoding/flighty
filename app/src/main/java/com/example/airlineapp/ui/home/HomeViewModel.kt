@@ -17,8 +17,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     private val _scheduleLocation = MutableLiveData<ScheduleLocation>()
     val scheduleLocation : LiveData<ScheduleLocation> = _scheduleLocation
 
-
-    fun onSearchClick() {
+    fun onSearchFlightClick() {
         when {
             origin.value.isNullOrEmpty() -> originError.value = "Please provide origin location"
             destination.value.isNullOrEmpty() -> destinationError.value = "Please provide destination location"
