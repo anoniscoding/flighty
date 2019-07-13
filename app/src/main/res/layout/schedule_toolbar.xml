@@ -31,7 +31,7 @@
             android:id="@+id/image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_back"
+            android:src="@drawable/ic_left_arrow"
             android:background="@android:color/transparent"
             app:layout_constraintLeft_toLeftOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
@@ -46,10 +46,9 @@
             android:textStyle="bold"
             android:textSize="@dimen/sp14"
             android:textColor="#BAB9B9"
-            android:layout_marginStart="@dimen/dp3"
             app:layout_constraintLeft_toLeftOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/image"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp20"
         />
 
         <TextView
