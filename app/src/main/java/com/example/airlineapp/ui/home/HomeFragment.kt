@@ -58,10 +58,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpCustomActionBar()
         initLocationAdapters()
-        changeSetFlightBtnBackground()
+        changeSearchFlightBtnBackground()
     }
 
-    private fun changeSetFlightBtnBackground() {
+    private fun changeSearchFlightBtnBackground() {
         val leftShapePathModel = ShapePathModel()
         leftShapePathModel.topLeftCorner = RoundedCornerTreatment(BTN_RADIUS)
         leftShapePathModel.bottomLeftCorner = RoundedCornerTreatment(BTN_RADIUS)

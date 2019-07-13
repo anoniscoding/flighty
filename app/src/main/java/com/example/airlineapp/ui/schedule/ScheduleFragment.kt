@@ -57,14 +57,18 @@ class ScheduleFragment : Fragment() {
         val toolbar = scheduleToolbar as Toolbar
         landingScreenActivity.supportActionBar?.hide()
         landingScreenActivity.setSupportActionBar(toolbar)
+        setToolbarCodeLabelText(toolbar)
+        scheduleToolbar.image.setOnClickListener {
+            landingScreenActivity.supportFragmentManager.popBackStack()
+        }
+    }
+
+    private fun setToolbarCodeLabelText(toolbar: Toolbar) {
         toolbar.originLabel.text = scheduleLocation.origin.label()
         toolbar.originCode.text = scheduleLocation.origin.code()
 
         toolbar.destinationLabel.text = scheduleLocation.destination.label()
         toolbar.destinationCode.text = scheduleLocation.destination.code()
-        scheduleToolbar.image.setOnClickListener {
-            landingScreenActivity.supportFragmentManager.popBackStack()
-        }
     }
 
     companion object {
