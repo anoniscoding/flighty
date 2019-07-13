@@ -1,7 +1,7 @@
 package com.example.airlineapp.ui.schedule
 
 import com.example.airlineapp.data.Schedule
-import com.example.airlineapp.ui.home.ScheduleLocation
+import com.example.airlineapp.data.ScheduleLocation
 import io.reactivex.Observable
 
 interface ScheduleContract {

@@ -1,4 +1,4 @@
-package com.example.airlineapp.ui.home
+package com.example.airlineapp.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -14,4 +14,5 @@ enum class LocationData(private val code: String, private val label: String) {
 
     override fun toString(): String = label
     fun code(): String = code
+    fun label(): String = label
 }

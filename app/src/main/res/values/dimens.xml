@@ -12,4 +12,13 @@
     <dimen name="dp30">30dp</dimen>
     <dimen name="sp18">18sp</dimen>
     <dimen name="dp28">28dp</dimen>
+    <dimen name="sp16">16sp</dimen>
+    <dimen name="sp36">36sp</dimen>
+    <dimen name="dp3">3dp</dimen>
+    <dimen name="sp14">14sp</dimen>
+    <dimen name="dp140">140dp</dimen>
+    <dimen name="dp1">1dp</dimen>
+    <dimen name="dp45">45dp</dimen>
+    <dimen name="dp32">32dp</dimen>
+    <dimen name="dp24">24dp</dimen>
 </resources>

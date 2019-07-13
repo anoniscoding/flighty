@@ -9,12 +9,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-
 import com.example.airlineapp.R
 import com.example.airlineapp.databinding.FragmentScheduleBinding
 import com.example.airlineapp.ui.LandingScreenActivity
-import com.example.airlineapp.ui.home.HomeFragment.Companion.SCHEDULE_LOCATION_TAG
-import com.example.airlineapp.ui.home.ScheduleLocation
+import com.example.airlineapp.data.ScheduleLocation
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_schedule.*
 import kotlinx.android.synthetic.main.schedule_toolbar.view.*
@@ -59,8 +57,17 @@ class ScheduleFragment : Fragment() {
         val toolbar = scheduleToolbar as Toolbar
         landingScreenActivity.supportActionBar?.hide()
         landingScreenActivity.setSupportActionBar(toolbar)
+        toolbar.originLabel.text = scheduleLocation.origin.label()
+        toolbar.originCode.text = scheduleLocation.origin.code()
+
+        toolbar.destinationLabel.text = scheduleLocation.destination.label()
+        toolbar.destinationCode.text = scheduleLocation.destination.code()
         scheduleToolbar.image.setOnClickListener {
             landingScreenActivity.supportFragmentManager.popBackStack()
         }
+    }
+
+    companion object {
+        const val SCHEDULE_LOCATION_TAG = "scheduleLocation"
     }
 }

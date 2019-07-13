@@ -4,7 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="@dimen/dp140"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:contentInsetLeft="@dimen/dp0"
         android:contentInsetStart="@dimen/dp0"
@@ -21,21 +21,82 @@
             android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.Guideline
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/guideline"
-                app:layout_constraintGuide_begin="22dp"
-                android:orientation="vertical"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline"
+            app:layout_constraintGuide_begin="28dp"
+            android:orientation="vertical"/>
 
         <ImageButton
-                android:id="@+id/image"
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:background="@android:color/transparent"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/dp20"
+        />
+
+        <TextView
+            android:id="@+id/originLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Label"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp14"
+            android:textColor="#BAB9B9"
+            android:layout_marginStart="@dimen/dp3"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/image"
+            android:layout_marginTop="@dimen/dp10"
+        />
+
+        <TextView
+                android:id="@+id/originCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_back"
-                android:background="@android:color/transparent"
+                android:text="CODE"
+                android:textSize="@dimen/sp18"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@+id/originLabel"
+                app:layout_constraintTop_toBottomOf="@+id/originLabel"
+        />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_plane"
                 app:layout_constraintLeft_toLeftOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="@dimen/dp20"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/originCode"
+                app:layout_constraintHorizontal_bias="0.36"
+        />
+
+        <TextView
+                android:id="@+id/destinationLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Label"
+                android:textSize="@dimen/sp14"
+                android:textColor="#BAB9B9"
+                android:textStyle="bold"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/originLabel"
+                android:layout_marginEnd="100dp"
+        />
+
+        <TextView
+                android:id="@+id/destinationCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CODE"
+                android:textSize="@dimen/sp18"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="@+id/originCode"
+                app:layout_constraintLeft_toLeftOf="@+id/destinationLabel"
         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,13 +5,13 @@
     <stroke android:width="3dp"
             android:color="@color/colorPrimary" />
 
-    <padding android:left="1dp"
-             android:top="1dp"
-             android:right="1dp"
-             android:bottom="1dp" />
+    <padding android:left="@dimen/dp1"
+             android:top="@dimen/dp1"
+             android:right="@dimen/dp1"
+             android:bottom="@dimen/dp1" />
 
     <corners
-             android:bottomLeftRadius="32dp"/>
+             android:bottomLeftRadius="@dimen/dp45"/>
 
     <gradient
             android:angle="45"

@@ -7,6 +7,6 @@
     <string name="flightly_description">Your flight schedule app</string>
     <string name="home_header">Flight Schedule</string>
     <string name="origin_label">From</string>
-    <string name="destination_label">Destination</string>
+    <string name="destination_label">To</string>
     <string name="search_flights_btn">Search Flights</string>
 </resources>

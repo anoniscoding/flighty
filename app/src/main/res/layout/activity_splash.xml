@@ -26,7 +26,7 @@
             android:textColor="@color/colorAccent"
             android:layout_marginTop="@dimen/dp10"
             android:textStyle="bold"
-            android:textSize="@dimen/sp30"
+            android:textSize="@dimen/sp36"
             app:layout_constraintTop_toBottomOf="@+id/image"
             app:layout_constraintLeft_toLeftOf="@+id/image"
             app:layout_constraintRight_toRightOf="@+id/image"

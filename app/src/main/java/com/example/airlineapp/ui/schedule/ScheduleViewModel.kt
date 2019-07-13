@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.airlineapp.data.Schedule
-import com.example.airlineapp.ui.home.ScheduleLocation
+import com.example.airlineapp.data.ScheduleLocation
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 

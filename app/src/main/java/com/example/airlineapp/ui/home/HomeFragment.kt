@@ -14,9 +14,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.airlineapp.R
+import com.example.airlineapp.data.LocationData
+import com.example.airlineapp.data.ScheduleLocation
 import com.example.airlineapp.databinding.HomeFragmentBinding
 import com.example.airlineapp.ui.LandingScreenActivity
 import com.example.airlineapp.ui.schedule.ScheduleFragment
+import com.example.airlineapp.ui.schedule.ScheduleFragment.Companion.SCHEDULE_LOCATION_TAG
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.RoundedCornerTreatment
 import com.google.android.material.shape.ShapePathModel
@@ -104,7 +107,6 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
-        const val SCHEDULE_LOCATION_TAG = "scheduleLocation"
         const val BTN_RADIUS = 85.0f
     }
 

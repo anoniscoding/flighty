@@ -2,6 +2,8 @@ package com.example.airlineapp.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.airlineapp.data.LocationData
+import com.example.airlineapp.data.ScheduleLocation
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor() : ViewModel() {
@@ -20,7 +22,8 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             else -> {
                 val originLocation = LocationData.valueOf(origin.value!!.toUpperCase())
                 val destinationLocation = LocationData.valueOf(destination.value!!.toUpperCase())
-                scheduleLocation.value = ScheduleLocation(originLocation, destinationLocation)
+                scheduleLocation.value =
+                    ScheduleLocation(originLocation, destinationLocation)
             }
         }
     }
