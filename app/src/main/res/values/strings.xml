@@ -1,12 +1,10 @@
 <resources>
     <string name="app_name">AirlineApp</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="flightly">Flightly</string>
-    <string name="flightly_description">Your flight schedule app</string>
+    <string name="flightly_description">Flying you to new heights</string>
     <string name="home_header">Flight Schedule</string>
     <string name="origin_label">From</string>
     <string name="destination_label">To</string>
     <string name="search_flights_btn">Search Flights</string>
+    <string name="flight_number_label">Flight Number</string>
 </resources>

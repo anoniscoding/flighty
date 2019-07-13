@@ -21,4 +21,5 @@
     <dimen name="dp45">45dp</dimen>
     <dimen name="dp32">32dp</dimen>
     <dimen name="dp24">24dp</dimen>
+    <dimen name="dp220">220dp</dimen>
 </resources>
