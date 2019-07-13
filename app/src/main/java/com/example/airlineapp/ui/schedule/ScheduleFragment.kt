@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.airlineapp.R
 import com.example.airlineapp.databinding.FragmentScheduleBinding
 import com.example.airlineapp.ui.LandingScreenActivity
 import com.example.airlineapp.data.ScheduleLocation
+import com.example.airlineapp.extensions.hide
+import com.example.airlineapp.extensions.show
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_schedule.*
 import kotlinx.android.synthetic.main.schedule_toolbar.view.*
@@ -33,13 +36,14 @@ class ScheduleFragment : Fragment() {
         arguments?.let {
             scheduleLocation = it.getParcelable(SCHEDULE_LOCATION_TAG)
         }
+        viewModel = ViewModelProviders.of(this, vmFactory)[ScheduleViewModel::class.java]
+        observeLiveData()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProviders.of(this, vmFactory)[ScheduleViewModel::class.java]
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -50,6 +54,21 @@ class ScheduleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpScheduleActionBar()
         viewModel.fetchSchedules(scheduleLocation)
+    }
+
+    private fun observeLiveData() {
+        viewModel.totalSchedules.observe(this, Observer { onTotalSchedulesReceived(it) })
+        viewModel.errorMsg.observe(this, Observer {
+            progressLoader.hide()
+            errorLabel.show()
+            errorLabel.text = it
+        })
+    }
+
+    private fun onTotalSchedulesReceived(it: String?) {
+        progressLoader.hide()
+        flightDetailsGroup.show()
+        totalSchedules.text = it
     }
 
     private fun setUpScheduleActionBar() {
