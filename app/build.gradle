@@ -29,6 +29,10 @@ android {
         }
     }
 
+    androidExtensions {
+        experimental = true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -91,6 +95,9 @@ dependencies {
     // ReactiveX
     implementation "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
+
+    //Spinner
+    implementation "com.weiwangcn.betterspinner:library-material:1.1.0"
 
     /* Dagger2 - default dependency */
     kapt "com.google.dagger:dagger-compiler:$project.daggerVersion"

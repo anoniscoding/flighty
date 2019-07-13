@@ -7,7 +7,7 @@
     tools:context=".ui.LandingScreenActivity">
 
     <include
-            layout="@layout/app_toolbar"
+            layout="@layout/home_toolbar"
             android:id="@+id/appToolbar"/>
 
     <FrameLayout

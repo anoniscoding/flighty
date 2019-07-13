@@ -11,5 +11,11 @@
              android:bottom="1dp" />
 
     <corners
-             android:bottomLeftRadius="27dp"/>
+             android:bottomLeftRadius="32dp"/>
+
+    <gradient
+            android:angle="45"
+            android:startColor="@color/colorPrimary"
+            android:endColor="@color/colorPrimaryDark"
+            android:type="linear" />
 </shape>

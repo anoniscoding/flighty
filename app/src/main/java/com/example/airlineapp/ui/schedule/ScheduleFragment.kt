@@ -5,21 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 
 import com.example.airlineapp.R
 import com.example.airlineapp.databinding.FragmentScheduleBinding
+import com.example.airlineapp.ui.LandingScreenActivity
+import com.example.airlineapp.ui.home.HomeFragment.Companion.SCHEDULE_LOCATION_TAG
+import com.example.airlineapp.ui.home.ScheduleLocation
+import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_schedule.*
+import kotlinx.android.synthetic.main.schedule_toolbar.view.*
 import javax.inject.Inject
 
-private const val ORIGIN_LABEL = "origin"
-private const val DESTINATION_LABEL = "destination"
-
-
 class ScheduleFragment : Fragment() {
-    private var origin: String = ""
-    private var destination: String = ""
+    private lateinit var scheduleLocation: ScheduleLocation
 
     @Inject
     lateinit var vmFactory: ViewModelProvider.Factory
@@ -29,9 +31,9 @@ class ScheduleFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidSupportInjection.inject(this)
         arguments?.let {
-            origin = it.getString(ORIGIN_LABEL) ?: ""
-            destination = it.getString(DESTINATION_LABEL) ?: ""
+            scheduleLocation = it.getParcelable(SCHEDULE_LOCATION_TAG)
         }
     }
 
@@ -48,8 +50,17 @@ class ScheduleFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.fetchSchedules(origin, destination)
+        setUpScheduleActionBar()
+        viewModel.fetchSchedules(scheduleLocation)
     }
 
-
+    private fun setUpScheduleActionBar() {
+        val landingScreenActivity = (activity as LandingScreenActivity)
+        val toolbar = scheduleToolbar as Toolbar
+        landingScreenActivity.supportActionBar?.hide()
+        landingScreenActivity.setSupportActionBar(toolbar)
+        scheduleToolbar.image.setOnClickListener {
+            landingScreenActivity.supportFragmentManager.popBackStack()
+        }
+    }
 }

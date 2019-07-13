@@ -2,11 +2,9 @@
 <androidx.appcompat.widget.Toolbar
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@android:color/white"
+        android:layout_height="140dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:contentInsetLeft="@dimen/dp0"
         android:contentInsetStart="@dimen/dp0"
@@ -15,23 +13,29 @@
         android:contentInsetRight="@dimen/dp0"
         android:contentInsetEnd="@dimen/dp0"
         app:contentInsetRight="@dimen/dp0"
-        app:contentInsetEnd="@dimen/dp0"
-        tools:showIn="@layout/landing_screen">
+        app:contentInsetEnd="@dimen/dp0">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:background="@drawable/toolbar_bg"
             android:layout_height="match_parent">
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="@string/home_header"
-                  android:textSize="@dimen/sp24"
-                  android:layout_marginTop="@dimen/dp20"
-                  android:layout_marginStart="@dimen/dp20"
-                  android:textColor="@color/colorAccent"
-                  app:layout_constraintLeft_toLeftOf="parent"
-                  app:layout_constraintTop_toTopOf="parent"
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline"
+                app:layout_constraintGuide_begin="22dp"
+                android:orientation="vertical"/>
+
+        <ImageButton
+                android:id="@+id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back"
+                android:background="@android:color/transparent"
+                app:layout_constraintLeft_toLeftOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/dp20"
         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,4 +5,11 @@
     <dimen name="dp20">20dp</dimen>
     <dimen name="sp24">24sp</dimen>
     <dimen name="dp0">0dp</dimen>
+    <dimen name="sp15">15sp</dimen>
+    <dimen name="dp60">60dp</dimen>
+    <dimen name="dp70">70dp</dimen>
+    <dimen name="dp40">40dp</dimen>
+    <dimen name="dp30">30dp</dimen>
+    <dimen name="sp18">18sp</dimen>
+    <dimen name="dp28">28dp</dimen>
 </resources>

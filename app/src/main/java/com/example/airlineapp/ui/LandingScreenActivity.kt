@@ -2,9 +2,9 @@ package com.example.airlineapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.airlineapp.R
 import com.example.airlineapp.ui.home.HomeFragment
-import kotlinx.android.synthetic.main.app_toolbar.*
 import kotlinx.android.synthetic.main.landing_screen.*
 
 class LandingScreenActivity : AppCompatActivity() {
@@ -21,16 +21,14 @@ class LandingScreenActivity : AppCompatActivity() {
     }
 
     private fun setUpCustomActionBar() {
+        val toolbar = appToolbar as Toolbar
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setDisplayUseLogoEnabled(false)
     }
 
     private fun loadHomeFragment() {
         supportFragmentManager
             .beginTransaction()
             .replace(fragment_container.id, HomeFragment())
-            .addToBackStack(null)
             .commit()
     }
 }

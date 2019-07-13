@@ -37,7 +37,7 @@ object NetworkModule {
 
         val bearerInterceptor = Interceptor {
                     val newRequest  = it.request().newBuilder()
-                        .addHeader("Authorization", "Bearer " + "j8cqxwkq7u8mk4xejbw7cff3")
+                        .addHeader("Authorization", "Bearer " + "9vmdkmwucc6xvk64tjh359me")
                         .build()
                     it.proceed(newRequest)
         }

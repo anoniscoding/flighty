@@ -39,7 +39,7 @@
             android:text="@string/flightly_description"
             android:textColor="@color/colorAccent"
             android:layout_marginTop="@dimen/dp10"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp18"
             app:layout_constraintTop_toBottomOf="@+id/appName"
             app:layout_constraintLeft_toLeftOf="@+id/appName"
             app:layout_constraintRight_toRightOf="@+id/appName"

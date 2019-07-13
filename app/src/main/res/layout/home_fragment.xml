@@ -9,32 +9,86 @@
                 name="viewModel"
                 type="com.example.airlineapp.ui.home.HomeViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.home.HomeFragment">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <include
+                layout="@layout/home_toolbar"
+                android:id="@+id/homeToolbar"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline"
+                app:layout_constraintGuide_begin="40dp"
+                android:orientation="vertical"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/originIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_location"
+                app:layout_constraintLeft_toLeftOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/origin"
+                android:layout_marginTop="20dp"/>
+
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
                 android:id="@+id/origin"
-                android:layout_width="match_parent"
-                app:errorEnabled="true"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="wrap_content"
+                android:hint="@string/origin_label"
+                android:textColorHint="@color/lightGrey"
+                app:met_floatingLabel="normal"
+                android:text="@={viewModel.origin}"
+                android:layout_marginTop="@dimen/dp70"
+                android:layout_marginStart="@dimen/dp20"
+                android:layout_marginEnd="@dimen/dp40"
+                app:layout_constraintLeft_toRightOf="@+id/originIcon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/homeToolbar" />
 
-                app:errorTextAppearance="@color/colorPrimary"
-                app:hintEnabled="true"
-                app:passwordToggleTint="@color/colorPrimary"
-                android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/destinationIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_location"
+                app:layout_constraintLeft_toLeftOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/destination"
+                android:layout_marginTop="@dimen/dp20"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="From"
-                    android:text="@={viewModel.origin}"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true"/>
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                android:id="@+id/destination"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="wrap_content"
+                android:hint="@string/destination_label"
+                android:textColorHint="@color/lightGrey"
+                app:met_floatingLabel="normal"
+                android:text="@={viewModel.destination}"
+                android:layout_marginTop="@dimen/dp30"
+                android:layout_marginStart="@dimen/dp20"
+                android:layout_marginEnd="@dimen/dp40"
+                app:layout_constraintLeft_toRightOf="@+id/destinationIcon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/origin" />
 
-        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/searchFlightBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp20"
+                android:text="@string/search_flights_btn"
+                app:icon="@drawable/ic_search"
+                android:textSize="@dimen/sp15"
+                android:textAllCaps="false"
+                android:layout_marginTop="@dimen/dp60"
+                android:onClick="@{(v) -> viewModel.onSearchClick()}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/destination"
+        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:contentInsetLeft="@dimen/dp0"
+        android:contentInsetStart="@dimen/dp0"
+        app:contentInsetLeft="@dimen/dp0"
+        app:contentInsetStart="@dimen/dp0"
+        android:contentInsetRight="@dimen/dp0"
+        android:contentInsetEnd="@dimen/dp0"
+        app:contentInsetRight="@dimen/dp0"
+        app:contentInsetEnd="@dimen/dp0"
+        tools:showIn="@layout/landing_screen">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/toolbar_bg"
+            android:layout_height="match_parent">
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/home_header"
+                  android:textSize="@dimen/sp24"
+                  android:layout_marginTop="@dimen/dp28"
+                  android:layout_marginStart="@dimen/dp30"
+                  android:textColor="@color/colorAccent"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.appcompat.widget.Toolbar>
