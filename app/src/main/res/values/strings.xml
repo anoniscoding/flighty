@@ -7,4 +7,5 @@
     <string name="destination_label">To</string>
     <string name="search_flights_btn">Search Flights</string>
     <string name="flight_number_label">Flight Number</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

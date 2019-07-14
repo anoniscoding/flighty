@@ -1,6 +1,8 @@
 package com.example.airlineapp.ui.schedule
 
+import android.content.Intent
 import android.graphics.Paint
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,8 @@ import com.example.airlineapp.data.Flight
 import com.example.airlineapp.data.Schedule
 import com.example.airlineapp.data.ScheduleLocation
 import com.example.airlineapp.data.TotalJourney
+import com.example.airlineapp.ui.map.MapsActivity
+import com.example.airlineapp.ui.schedule.ScheduleFragment.Companion.SCHEDULE_LOCATION_TAG
 import com.example.airlineapp.utils.BindableAdapter
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.RoundedCornerTreatment
@@ -57,7 +61,12 @@ class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
 
         init {
             setCardBackground()
-            view.viewBtn.setOnClickListener { print("Hello world") }
+            view.viewBtn.setOnClickListener {
+                val intent = Intent(it.context, MapsActivity::class.java).apply {
+                    putExtra(SCHEDULE_LOCATION_TAG, _scheduleLocation)
+                }
+                it.context.startActivity(intent)
+            }
         }
 
         //arrivalFlight is also the departureFlight whenever the schedule has zero stops
