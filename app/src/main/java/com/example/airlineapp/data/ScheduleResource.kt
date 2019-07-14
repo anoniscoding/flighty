@@ -14,7 +14,7 @@ class Schedule {
     @SerializedName("Flight")
     var flights: List<Flight> = emptyList()
 
-    fun isMultipleStops() = flights.size > 1
+    fun hasMultipleStops() = flights.size > 1
 }
 
 class TotalJourney {

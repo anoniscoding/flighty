@@ -46,7 +46,7 @@ class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
             set (schedule) {
                 field = schedule
 
-                if (schedule.isMultipleStops()) {
+                if (schedule.hasMultipleStops()) {
                     val firstFlight = schedule.flights.first()
                     val lastFlight = schedule.flights.last()
                     setCardDetails(firstFlight, schedule.totalJourney, lastFlight)
