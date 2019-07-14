@@ -60,6 +60,7 @@ class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
             view.viewBtn.setOnClickListener { print("Hello world") }
         }
 
+        //arrivalFlight is also the departureFlight whenever the schedule has zero stops
         private fun setCardDetails(
             departureFlight: Flight,
             totalJourney: TotalJourney,
