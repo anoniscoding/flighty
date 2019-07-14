@@ -47,9 +47,9 @@ class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
                 field = schedule
 
                 if (schedule.hasMultipleStops()) {
-                    val firstFlight = schedule.flights.first()
-                    val lastFlight = schedule.flights.last()
-                    setCardDetails(firstFlight, schedule.totalJourney, lastFlight)
+                    val departureFlight = schedule.flights.first()
+                    val arrivalFlight = schedule.flights.last()
+                    setCardDetails(departureFlight, schedule.totalJourney, arrivalFlight)
                 } else {
                     setCardDetails(schedule.flights.first(), schedule.totalJourney)
                 }
@@ -60,15 +60,19 @@ class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
             view.viewBtn.setOnClickListener { print("Hello world") }
         }
 
-        private fun setCardDetails(firstFlight: Flight, totalJourney: TotalJourney, lastFlight: Flight = firstFlight) {
-            view.flightDate.text = firstFlight.departure.scheduledTimeLocal.dateTime.substring(0, 10)
-            view.startTime.text = firstFlight.departure.scheduledTimeLocal.dateTime.substring(11)
+        private fun setCardDetails(
+            departureFlight: Flight,
+            totalJourney: TotalJourney,
+            arrivalFlight: Flight = departureFlight
+        ) {
+            view.flightDate.text = departureFlight.departure.scheduledTimeLocal.dateTime.substring(0, 10)
+            view.startTime.text = departureFlight.departure.scheduledTimeLocal.dateTime.substring(11)
             view.departureAirportCode.text = _scheduleLocation.origin.code()
             view.flightDuration.text = totalJourney.duration.substring(2)
-            view.noOfStops.text = "${lastFlight.details.stops.stopQuantity} stops"
-            view.endTime.text = lastFlight.arrival.scheduledTimeLocal.dateTime.substring(11)
+            view.noOfStops.text = "${arrivalFlight.details.stops.stopQuantity} stops"
+            view.endTime.text = arrivalFlight.arrival.scheduledTimeLocal.dateTime.substring(11)
             view.arrivalAirportCode.text = _scheduleLocation.destination.code()
-            view.flightNumber.text = firstFlight.marketingCarrier.flightNumber
+            view.flightNumber.text = departureFlight.marketingCarrier.flightNumber
         }
 
         private fun setCardBackground() {
