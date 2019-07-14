@@ -1,6 +1,5 @@
 package com.example.airlineapp.extensions
 
-import android.opengl.Visibility
 import android.view.View
 
 fun View.hide() {

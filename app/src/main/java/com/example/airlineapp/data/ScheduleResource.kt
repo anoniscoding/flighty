@@ -13,6 +13,8 @@ class Schedule {
 
     @SerializedName("Flight")
     var flights: List<Flight> = emptyList()
+
+    fun isMultipleStops() = flights.size > 1
 }
 
 class TotalJourney {
@@ -35,9 +37,6 @@ class Flight {
 }
 
 class Departure {
-    @SerializedName("AirportCode")
-    var airportCode: String = ""
-
     @SerializedName("ScheduledTimeLocal")
     var scheduledTimeLocal: ScheduledTimeLocal = ScheduledTimeLocal()
 }
@@ -48,17 +47,11 @@ class ScheduledTimeLocal {
 }
 
 class Arrival {
-    @SerializedName("AirportCode")
-    var airportCode: String = ""
-
     @SerializedName("ScheduledTimeLocal")
     var scheduledTimeLocal: ScheduledTimeLocal = ScheduledTimeLocal()
 }
 
 class MarketingCarrier {
-    @SerializedName("AirlineID")
-    val airlineID: String = ""
-
     @SerializedName("FlightNumber")
     val flightNumber: String = ""
 }
@@ -66,23 +59,9 @@ class MarketingCarrier {
 class Details {
     @SerializedName("Stops")
     var stops: Stops = Stops()
-
-    @SerializedName("DaysOfOperation")
-    var daysOfOperation: Int = Int.MIN_VALUE
-
-    @SerializedName("DatePeriod")
-    var datePeriod: DatePeriod = DatePeriod()
 }
 
 class Stops {
     @SerializedName("StopQuantity")
     var stopQuantity: Int = Int.MIN_VALUE
-}
-
-class DatePeriod {
-    @SerializedName("Effective")
-    var effective: String = ""
-
-    @SerializedName("Expiration")
-    var expiration: String = ""
 }

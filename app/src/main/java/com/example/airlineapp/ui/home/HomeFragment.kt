@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this, vmFactory)[HomeViewModel::class.java]
-        observeLiveData()
+        registerObservers()
     }
 
     override fun onCreateView(
@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
         landingScreenActivity.setSupportActionBar(homeToolbar as Toolbar)
     }
 
-    private fun observeLiveData() {
+    private fun registerObservers() {
         viewModel.originError.observe(this, Observer { binding.origin.error = it })
         viewModel.destinationError.observe(this, Observer { binding.destination.error = it })
         viewModel.scheduleLocation.observe(this, Observer { onScheduleLocationReceived(it) })

@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.airlineapp.R
+import com.example.airlineapp.data.Flight
 import com.example.airlineapp.data.Schedule
 import com.example.airlineapp.data.ScheduleLocation
+import com.example.airlineapp.data.TotalJourney
 import com.example.airlineapp.utils.BindableAdapter
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.RoundedCornerTreatment
@@ -22,8 +24,8 @@ class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
     private var schedules = emptyList<Schedule>()
 
     override fun setData(data: List<Schedule>?) {
-        this.schedules = data ?: emptyList()
-        notifyDataSetChanged()
+        schedules = data ?: emptyList()
+        if (schedules.isNotEmpty()) notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,34 +43,35 @@ class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
 
     inner class ViewHolder internal constructor(private val view: View) : RecyclerView.ViewHolder(view) {
         var schedule: Schedule = Schedule()
-            set (value) {
-                field = value
+            set (schedule) {
+                field = schedule
 
-                if (value.flights.size == 1) {
-                    view.flightDate.text = value.flights[0].departure.scheduledTimeLocal.dateTime.substring(0, 10)
-                    view.startTime.text = value.flights[0].departure.scheduledTimeLocal.dateTime.substring(11)
-                    view.departureAirportCode.text = _scheduleLocation.origin.code()
-                    view.flightDuration.text = value.totalJourney.duration.substring(2)
-                    view.noOfStops.text = "${value.flights[0].details.stops.stopQuantity} stops"
-                    view.endTime.text = value.flights[0].arrival.scheduledTimeLocal.dateTime.substring(11)
-                    view.arrivalAirportCode.text = _scheduleLocation.destination.code()
-                    view.flightNumber.text = value.flights[0].marketingCarrier.flightNumber
+                if (schedule.isMultipleStops()) {
+                    val firstFlight = schedule.flights.first()
+                    val lastFlight = schedule.flights.last()
+                    setCardDetails(firstFlight, schedule.totalJourney, lastFlight)
                 } else {
-                    val firstFlight = value.flights[0]
-                    val lastFlight = value.flights[value.flights.size - 1]
-                    view.flightDate.text = firstFlight.departure.scheduledTimeLocal.dateTime.substring(0, 10)
-                    view.startTime.text = firstFlight.departure.scheduledTimeLocal.dateTime.substring(11)
-                    view.departureAirportCode.text = _scheduleLocation.origin.code()
-                    view.flightDuration.text = value.totalJourney.duration.substring(2)
-                    view.noOfStops.text = "${lastFlight.details.stops.stopQuantity} stops"
-                    view.endTime.text = lastFlight.arrival.scheduledTimeLocal.dateTime.substring(11)
-                    view.arrivalAirportCode.text = _scheduleLocation.destination.code()
-                    view.flightNumber.text = firstFlight.marketingCarrier.flightNumber
+                    setCardDetails(schedule.flights.first(), schedule.totalJourney)
                 }
-
             }
 
-        private fun changeBackground() {
+        init {
+            setCardBackground()
+            view.viewBtn.setOnClickListener { print("Hello world") }
+        }
+
+        private fun setCardDetails(firstFlight: Flight, totalJourney: TotalJourney, lastFlight: Flight = firstFlight) {
+            view.flightDate.text = firstFlight.departure.scheduledTimeLocal.dateTime.substring(0, 10)
+            view.startTime.text = firstFlight.departure.scheduledTimeLocal.dateTime.substring(11)
+            view.departureAirportCode.text = _scheduleLocation.origin.code()
+            view.flightDuration.text = totalJourney.duration.substring(2)
+            view.noOfStops.text = "${lastFlight.details.stops.stopQuantity} stops"
+            view.endTime.text = lastFlight.arrival.scheduledTimeLocal.dateTime.substring(11)
+            view.arrivalAirportCode.text = _scheduleLocation.destination.code()
+            view.flightNumber.text = firstFlight.marketingCarrier.flightNumber
+        }
+
+        private fun setCardBackground() {
             val radius = 87.0f
             val leftShapePathModel = ShapePathModel()
             leftShapePathModel.topRightCorner = RoundedCornerTreatment(radius)
@@ -79,15 +82,5 @@ class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
             }
             view.setBackgroundDrawable(leftRoundedMaterialShape)
         }
-
-        init {
-            changeBackground()
-            view.viewBtn.setOnClickListener {
-                print("Hello world")
-            }
-        }
-
-
-
     }
 }

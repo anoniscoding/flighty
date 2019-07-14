@@ -27,7 +27,7 @@
                   android:text="@string/home_header"
                   android:textSize="@dimen/sp24"
                   android:layout_marginTop="@dimen/dp40"
-                  android:layout_marginStart="@dimen/dp30"
+                  android:layout_marginStart="@dimen/dp40"
                   android:textStyle="bold"
                   android:textColor="@color/colorAccent"
                   app:layout_constraintLeft_toLeftOf="parent"

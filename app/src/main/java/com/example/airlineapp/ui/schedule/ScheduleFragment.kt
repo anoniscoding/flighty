@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -40,7 +39,7 @@ class ScheduleFragment : Fragment() {
             scheduleLocation = it.getParcelable(SCHEDULE_LOCATION_TAG)
         }
         viewModel = ViewModelProviders.of(this, vmFactory)[ScheduleViewModel::class.java]
-        observeLiveData()
+        registerObservers()
     }
 
     override fun onCreateView(
@@ -60,13 +59,15 @@ class ScheduleFragment : Fragment() {
         viewModel.fetchSchedules(scheduleLocation)
     }
 
-    private fun observeLiveData() {
+    private fun registerObservers() {
         viewModel.totalSchedules.observe(this, Observer { onTotalSchedulesReceived(it) })
-        viewModel.errorMsg.observe(this, Observer {
-            progressLoader.hide()
-            errorLabel.show()
-            errorLabel.text = it
-        })
+        viewModel.errorMsg.observe(this, Observer { onErrorsReceived(it) })
+    }
+
+    private fun onErrorsReceived(it: String?) {
+        progressLoader.hide()
+        errorLabel.show()
+        errorLabel.text = it
     }
 
     private fun onTotalSchedulesReceived(it: String?) {
