@@ -61,10 +61,10 @@ class ScheduleFragment : Fragment() {
 
     private fun registerObservers() {
         viewModel.totalSchedules.observe(this, Observer { onTotalSchedulesReceived(it) })
-        viewModel.errorMsg.observe(this, Observer { onErrorsReceived(it) })
+        viewModel.errorMsg.observe(this, Observer { onErrorReceived(it) })
     }
 
-    private fun onErrorsReceived(it: String?) {
+    private fun onErrorReceived(it: String?) {
         progressLoader.hide()
         errorLabel.show()
         errorLabel.text = it
