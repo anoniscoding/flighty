@@ -1,5 +1,8 @@
 package com.example.airlineapp.di
 
+import android.app.Application
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
@@ -10,6 +13,12 @@ import javax.inject.Singleton
 
 @Module
 object AppModule {
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun providesSharedPreferences(application: Application):
+            SharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
 
     @Provides
     @Singleton

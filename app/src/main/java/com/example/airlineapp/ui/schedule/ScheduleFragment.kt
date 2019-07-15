@@ -95,11 +95,11 @@ class ScheduleFragment : Fragment() {
     }
 
     private fun setToolbarCodeLabelText(toolbar: Toolbar) {
-        toolbar.originLabel.text = scheduleLocation.origin.label()
-        toolbar.originCode.text = scheduleLocation.origin.code()
+        toolbar.originLabel.text = scheduleLocation.origin.label
+        toolbar.originCode.text = scheduleLocation.origin.code
 
-        toolbar.destinationLabel.text = scheduleLocation.destination.label()
-        toolbar.destinationCode.text = scheduleLocation.destination.code()
+        toolbar.destinationLabel.text = scheduleLocation.destination.label
+        toolbar.destinationCode.text = scheduleLocation.destination.code
     }
 
     companion object {

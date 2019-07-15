@@ -51,6 +51,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha01'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    testImplementation "org.robolectric:robolectric:3.3.2"
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.4'
     testImplementation 'android.arch.core:core-testing:1.1.1'
@@ -63,7 +64,6 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha04'
 
-
     /* Retrofit using RxJava2, Okhttp, Okhttp logging interceptor, Gson  */
     implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$project.retrofitVersion"
@@ -71,18 +71,13 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$project.okHttpVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
 
-    /* Android Architecture Component - Room Persistance Lib  */
-    implementation "android.arch.persistence.room:runtime:$project.roomVersion"
-    implementation "android.arch.persistence.room:rxjava2:$project.roomVersion"
-    kapt "android.arch.persistence.room:compiler:$project.roomVersion"
-    androidTestImplementation "android.arch.persistence.room:testing:$project.roomVersion"
-
     /* Dagger2 - We are going to use dagger.android which includes
      * support for Activity and fragment injection so we need to include
      * the following dependencies */
     implementation "com.google.dagger:dagger-android:$project.daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$project.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$project.daggerVersion"
 
     // Lifecycle
     implementation "android.arch.lifecycle:runtime:$project.lifecycleVersion"
@@ -98,7 +93,4 @@ dependencies {
 
     //Play Service
     implementation "com.google.android.gms:play-services-location:17.0.0"
-
-    /* Dagger2 - default dependency */
-    kapt "com.google.dagger:dagger-compiler:$project.daggerVersion"
 }

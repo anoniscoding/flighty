@@ -32,8 +32,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         _map = googleMap
 
-        val origin = LatLng(_scheduleLocation.origin.lat(), _scheduleLocation.origin.lng())
-        val destination = LatLng(_scheduleLocation.destination.lat(), _scheduleLocation.destination.lng())
+        val origin = LatLng(_scheduleLocation.origin.lat, _scheduleLocation.origin.lng)
+        val destination = LatLng(_scheduleLocation.destination.lat, _scheduleLocation.destination.lng)
 
         _map.addPolyline(
             PolylineOptions()
@@ -43,7 +43,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Position the map's camera near origin location
         _map.moveCamera(CameraUpdateFactory.newLatLngZoom(origin, 4f))
-        _map.addMarker(MarkerOptions().position(origin).title(_scheduleLocation.origin.label()))
-        _map.addMarker(MarkerOptions().position(destination).title(_scheduleLocation.destination.label()))
+        _map.addMarker(MarkerOptions().position(origin).title(_scheduleLocation.origin.label))
+        _map.addMarker(MarkerOptions().position(destination).title(_scheduleLocation.destination.label))
     }
 }

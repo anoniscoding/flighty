@@ -1,6 +1,7 @@
 package com.example.airlineapp.di
 
 import android.app.Application
+import com.example.airlineapp.data.LuftansaAuth
 import com.example.airlineapp.data.LuftansaService
 import com.example.airlineapp.utils.AppConstants
 import com.google.gson.Gson
@@ -8,9 +9,7 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
-import okhttp3.Cache
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -31,28 +30,22 @@ object NetworkModule {
     @Provides
     @Reusable
     @JvmStatic
-    fun provideOkHttpClient(application: Application): OkHttpClient {
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC
-
-        val bearerInterceptor = Interceptor {
-                    val newRequest  = it.request().newBuilder()
-                        .addHeader("Authorization", "Bearer " + "9vmdkmwucc6xvk64tjh359me")
-                        .build()
-                    it.proceed(newRequest)
-        }
+    fun provideOkHttpClient(application: Application, tokenInterceptor: TokenInterceptor): OkHttpClient {
+        val loggingInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
 
         val cacheDir = File(application.cacheDir, UUID.randomUUID().toString())
         val tenMb: Long = 10 * 1024 * 1024
         val cache = Cache(cacheDir, tenMb)
+        val dispatcher = Dispatcher().apply { maxRequests = 1 }
 
         return OkHttpClient.Builder()
+            .dispatcher(dispatcher)
             .cache(cache)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(AppConstants.INSTANCE.CONNECT_TIMEOUT, TimeUnit.SECONDS)
+            .readTimeout(AppConstants.INSTANCE.READ_TIMEOUT, TimeUnit.SECONDS)
+            .writeTimeout(AppConstants.INSTANCE.WRITE_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(bearerInterceptor)
+            .addInterceptor(tokenInterceptor)
             .build()
     }
 
@@ -70,5 +63,13 @@ object NetworkModule {
     @Reusable
     @JvmStatic
     fun provideLuftansaService(retrofit: Retrofit): LuftansaService = retrofit.create(
-        LuftansaService::class.java)
+        LuftansaService::class.java
+    )
+
+    @Provides
+    @Reusable
+    @JvmStatic
+    fun provideLuftansaAuth(retrofit: Retrofit): LuftansaAuth = retrofit.create(
+        LuftansaAuth::class.java
+    )
 }

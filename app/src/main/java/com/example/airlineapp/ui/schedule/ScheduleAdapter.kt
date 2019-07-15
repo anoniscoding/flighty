@@ -77,11 +77,11 @@ class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
         ) {
             view.flightDate.text = departureFlight.departure.scheduledTimeLocal.dateTime.substring(0, 10)
             view.startTime.text = departureFlight.departure.scheduledTimeLocal.dateTime.substring(11)
-            view.departureAirportCode.text = _scheduleLocation.origin.code()
+            view.departureAirportCode.text = _scheduleLocation.origin.code
             view.flightDuration.text = totalJourney.duration.substring(2)
             view.noOfStops.text = "${arrivalFlight.details.stops.stopQuantity} stops"
             view.endTime.text = arrivalFlight.arrival.scheduledTimeLocal.dateTime.substring(11)
-            view.arrivalAirportCode.text = _scheduleLocation.destination.code()
+            view.arrivalAirportCode.text = _scheduleLocation.destination.code
             view.flightNumber.text = departureFlight.marketingCarrier.flightNumber
         }
 

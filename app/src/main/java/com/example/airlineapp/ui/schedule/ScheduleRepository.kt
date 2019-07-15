@@ -17,7 +17,7 @@ class ScheduleRepository(
     override fun getAirlineSchedules(scheduleLocation: ScheduleLocation): Observable<List<Schedule>> {
         val format = SimpleDateFormat("yyyy-MM-dd")
         val startDate = format.format(Date())
-        return _luftansaService.fetchSchedules(scheduleLocation.origin.code(), scheduleLocation.destination.code(), startDate)
+        return _luftansaService.fetchSchedules(scheduleLocation.origin.code, scheduleLocation.destination.code, startDate)
             .subscribeOn(_subscribeOnScheduler)
             .map {
                 val scheduleResource = it.convertTo(ScheduleResource::class.java) ?: ScheduleResource()
