@@ -30,7 +30,7 @@ object NetworkModule {
     @Provides
     @Reusable
     @JvmStatic
-    fun provideOkHttpClient(application: Application, tokenInterceptor: TokenInterceptor): OkHttpClient {
+    fun provideOkHttpClient(application: Application, authInterceptor: AuthInterceptor): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
 
         val cacheDir = File(application.cacheDir, UUID.randomUUID().toString())
@@ -45,7 +45,7 @@ object NetworkModule {
             .readTimeout(AppConstants.INSTANCE.READ_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(AppConstants.INSTANCE.WRITE_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(tokenInterceptor)
+            .addInterceptor(authInterceptor)
             .build()
     }
 

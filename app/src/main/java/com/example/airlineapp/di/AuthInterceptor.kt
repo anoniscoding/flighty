@@ -11,10 +11,9 @@ import okhttp3.Request
 import okhttp3.Response
 import javax.inject.Inject
 
-class TokenInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>, private val _prefs: SharedPreferences) : Interceptor{
+class AuthInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>, private val _prefs: SharedPreferences) : Interceptor{
     override fun intercept(chain: Interceptor.Chain): Response {
         val token = _prefs.getString(AUTH_TOKEN, "")
-
         val request: Request = getRequestWithOrWithoutHeaders(chain, token)
         val response = chain.proceed(request)
 
