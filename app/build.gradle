@@ -23,7 +23,18 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "CLIENT_ID", "\"fukwyurm7a3v445myjz7pe9t\""
+            buildConfigField "String", "CLIENT_SECRET", "\"2Xd6V8KBvn\""
+            buildConfigField "String", "TOKEN_URL", "\"https://api.lufthansa.com/v1/oauth/token\""
+            buildConfigField "String", "GRANT_TYPE", "\"client_credentials\""
+
+        }
         release {
+            buildConfigField "String", "CLIENT_ID", "fukwyurm7a3v445myjz7pe9t"
+            buildConfigField "String", "CLIENT_SECRET", "2Xd6V8KBvn"
+            buildConfigField "String", "TOKEN_URL", "\"https://api.lufthansa.com/v1/oauth/token\""
+            buildConfigField "String", "GRANT_TYPE", "\"client_credentials\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

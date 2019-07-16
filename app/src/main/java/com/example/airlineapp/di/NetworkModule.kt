@@ -3,6 +3,9 @@ package com.example.airlineapp.di
 import android.app.Application
 import com.example.airlineapp.data.LuftansaAuth
 import com.example.airlineapp.data.LuftansaService
+import com.example.airlineapp.di.NetworkModule.NetworkConstant.CONNECT_TIMEOUT
+import com.example.airlineapp.di.NetworkModule.NetworkConstant.READ_TIMEOUT
+import com.example.airlineapp.di.NetworkModule.NetworkConstant.WRITE_TIMEOUT
 import com.example.airlineapp.utils.AppConstants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -41,9 +44,9 @@ object NetworkModule {
         return OkHttpClient.Builder()
             .dispatcher(dispatcher)
             .cache(cache)
-            .connectTimeout(AppConstants.INSTANCE.CONNECT_TIMEOUT, TimeUnit.SECONDS)
-            .readTimeout(AppConstants.INSTANCE.READ_TIMEOUT, TimeUnit.SECONDS)
-            .writeTimeout(AppConstants.INSTANCE.WRITE_TIMEOUT, TimeUnit.SECONDS)
+            .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
+            .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+            .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(loggingInterceptor)
             .addInterceptor(authInterceptor)
             .build()
@@ -72,4 +75,10 @@ object NetworkModule {
     fun provideLuftansaAuth(retrofit: Retrofit): LuftansaAuth = retrofit.create(
         LuftansaAuth::class.java
     )
+
+    object NetworkConstant{
+        val CONNECT_TIMEOUT: Long = 30
+        val WRITE_TIMEOUT: Long = 30
+        val READ_TIMEOUT: Long = 30
+    }
 }

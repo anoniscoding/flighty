@@ -1,6 +1,7 @@
 package com.example.airlineapp.di
 
 import android.content.SharedPreferences
+import com.example.airlineapp.BuildConfig
 import com.example.airlineapp.data.LuftansaAuth
 import com.example.airlineapp.utils.AppConstants
 import com.example.airlineapp.utils.HttpCodes
@@ -30,7 +31,7 @@ class AuthInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>,
     }
 
     private fun getRequestWithOrWithoutHeaders(chain: Interceptor.Chain, token: String?): Request {
-        return if (getRequestUrl(chain) != AppConstants.INSTANCE.TOKEN_URL) {
+        return if (getRequestUrl(chain) != BuildConfig.TOKEN_URL) {
             getRequestWithAuthorizationHeader(chain, token)
         } else {
             chain.request().newBuilder().build()
@@ -47,9 +48,9 @@ class AuthInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>,
 
     private fun regenerateToken(): String {
         val result = _auth.get().fetchToken(
-            AppConstants.INSTANCE.CLIENT_ID,
-            AppConstants.INSTANCE.CLIENT_SECRET,
-            AppConstants.INSTANCE.GRANT_TYPE
+            BuildConfig.CLIENT_ID,
+            BuildConfig.CLIENT_SECRET,
+            BuildConfig.GRANT_TYPE
         ).blockingGet()
 
         val accessToken = result.get("access_token").toString()
