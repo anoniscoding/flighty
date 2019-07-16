@@ -1,27 +1,22 @@
 package com.example.airlineapp.ui.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.Observer
-import com.example.airlineapp.data.ScheduleLocation
 import junit.framework.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
-import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
 
 @RunWith(MockitoJUnitRunner::class)
 class HomeViewModelTest {
 
-    @Mock
-    lateinit var observerState: Observer<ScheduleLocation>
-
     //Prevents error : Method getMainLooper in android.os.Looper not mocked
     //Because livedata updates the its value on the main thread, this helps to bypass that
     @Rule
-    @JvmField var rule: TestRule = InstantTaskExecutorRule()
+    @JvmField
+    var rule: TestRule = InstantTaskExecutorRule()
 
     @Test
     fun `emit_error_when_origin_location_is_empty_when_search_flight_is_called`() {
@@ -35,7 +30,7 @@ class HomeViewModelTest {
     fun `emit_error_when_destination_location_is_empty_when_search_flight_is_called`() {
         val viewModel = HomeViewModel()
         viewModel.apply {
-            origin.value =  "Lagos"
+            origin.value = "Lagos"
             onSearchFlightClick()
         }
         assertEquals("Please provide destination location", viewModel.destinationError.value)
