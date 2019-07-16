@@ -41,7 +41,7 @@ class AuthInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>,
 
     private fun getRequestWithAuthorizationHeader(chain: Interceptor.Chain, token: String?): Request {
         return chain.request().newBuilder()
-            .addHeader("Authorization", "Bearer $token")
+            .addHeader(AUTH_HEADER_LABEL, "Bearer $token")
             .build()
     }
 
@@ -54,5 +54,9 @@ class AuthInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>,
 
         val accessToken = result.get("access_token").toString()
         return accessToken.substring(1, accessToken.length - 1) //remove extra quotes from token
+    }
+
+    companion object {
+        const val AUTH_HEADER_LABEL = "Authorization"
     }
 }
