@@ -24,9 +24,9 @@ class AuthInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>,
                 val newRequest = getRequestWithAuthorizationHeader(chain, newToken)
                 return chain.proceed(newRequest)
             }
-        } else {
-            return response
         }
+
+        return response
     }
 
     private fun getRequestWithOrWithoutHeaders(chain: Interceptor.Chain, token: String?): Request {
