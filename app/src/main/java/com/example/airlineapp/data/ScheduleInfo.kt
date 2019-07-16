@@ -2,9 +2,18 @@ package com.example.airlineapp.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Parcelize
-data class ScheduleLocation(val origin: LocationData, val destination: LocationData) : Parcelable
+data class ScheduleInfo(
+    val origin: LocationData,
+    val destination: LocationData,
+    private val _fromStartDate: Date = Date()) : Parcelable {
+
+    val fromStartDate: String
+        get() = SimpleDateFormat("yyyy-MM-dd").format(_fromStartDate)
+}
 
 enum class LocationData(
     val code: String,

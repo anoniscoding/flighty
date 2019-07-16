@@ -2,7 +2,6 @@ package com.example.airlineapp.ui.schedule
 
 import android.content.Intent
 import android.graphics.Paint
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.airlineapp.R
 import com.example.airlineapp.data.Flight
 import com.example.airlineapp.data.Schedule
-import com.example.airlineapp.data.ScheduleLocation
+import com.example.airlineapp.data.ScheduleInfo
 import com.example.airlineapp.data.TotalJourney
 import com.example.airlineapp.ui.map.MapsActivity
 import com.example.airlineapp.ui.schedule.ScheduleFragment.Companion.SCHEDULE_LOCATION_TAG
@@ -21,7 +20,7 @@ import com.google.android.material.shape.RoundedCornerTreatment
 import com.google.android.material.shape.ShapePathModel
 import kotlinx.android.synthetic.main.schedule_card_item.view.*
 
-class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
+class ScheduleAdapter(private val _scheduleInfo: ScheduleInfo) :
     RecyclerView.Adapter<ScheduleAdapter.ViewHolder>(),
     BindableAdapter<List<Schedule>> {
 
@@ -63,7 +62,7 @@ class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
             setCardBackground()
             view.viewBtn.setOnClickListener {
                 val intent = Intent(it.context, MapsActivity::class.java).apply {
-                    putExtra(SCHEDULE_LOCATION_TAG, _scheduleLocation)
+                    putExtra(SCHEDULE_LOCATION_TAG, _scheduleInfo)
                 }
                 it.context.startActivity(intent)
             }
@@ -77,11 +76,11 @@ class ScheduleAdapter(private val _scheduleLocation: ScheduleLocation) :
         ) {
             view.flightDate.text = departureFlight.departure.scheduledTimeLocal.dateTime.substring(0, 10)
             view.startTime.text = departureFlight.departure.scheduledTimeLocal.dateTime.substring(11)
-            view.departureAirportCode.text = _scheduleLocation.origin.code
+            view.departureAirportCode.text = _scheduleInfo.origin.code
             view.flightDuration.text = totalJourney.duration.substring(2)
             view.noOfStops.text = "${arrivalFlight.details.stops.stopQuantity} stops"
             view.endTime.text = arrivalFlight.arrival.scheduledTimeLocal.dateTime.substring(11)
-            view.arrivalAirportCode.text = _scheduleLocation.destination.code
+            view.arrivalAirportCode.text = _scheduleInfo.destination.code
             view.flightNumber.text = departureFlight.marketingCarrier.flightNumber
         }
 

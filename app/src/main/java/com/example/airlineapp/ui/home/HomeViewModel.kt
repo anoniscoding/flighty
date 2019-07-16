@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.airlineapp.data.LocationData
-import com.example.airlineapp.data.ScheduleLocation
+import com.example.airlineapp.data.ScheduleInfo
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor() : ViewModel() {
@@ -14,8 +14,8 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     val destination = MutableLiveData<String>()
     val destinationError = MutableLiveData<String>()
 
-    private val _scheduleLocation = MutableLiveData<ScheduleLocation>()
-    val scheduleLocation : LiveData<ScheduleLocation> = _scheduleLocation
+    private val _scheduleLocation = MutableLiveData<ScheduleInfo>()
+    val scheduleInfo : LiveData<ScheduleInfo> = _scheduleLocation
 
     fun onSearchFlightClick() {
         when {
@@ -25,7 +25,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 val originLocation = LocationData.valueOf(origin.value!!.toUpperCase())
                 val destinationLocation = LocationData.valueOf(destination.value!!.toUpperCase())
                 _scheduleLocation.value =
-                    ScheduleLocation(originLocation, destinationLocation)
+                    ScheduleInfo(originLocation, destinationLocation)
             }
         }
     }

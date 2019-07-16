@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.airlineapp.R
 import com.example.airlineapp.databinding.FragmentScheduleBinding
 import com.example.airlineapp.ui.LandingScreenActivity
-import com.example.airlineapp.data.ScheduleLocation
+import com.example.airlineapp.data.ScheduleInfo
 import com.example.airlineapp.extensions.hide
 import com.example.airlineapp.extensions.show
 import dagger.android.support.AndroidSupportInjection
@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.schedule_toolbar.view.*
 import javax.inject.Inject
 
 class ScheduleFragment : Fragment() {
-    private lateinit var scheduleLocation: ScheduleLocation
+    private lateinit var scheduleInfo: ScheduleInfo
 
     @Inject
     lateinit var vmFactory: ViewModelProvider.Factory
@@ -36,7 +36,7 @@ class ScheduleFragment : Fragment() {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
         arguments?.let {
-            scheduleLocation = it.getParcelable(SCHEDULE_LOCATION_TAG)
+            scheduleInfo = it.getParcelable(SCHEDULE_LOCATION_TAG)
         }
         viewModel = ViewModelProviders.of(this, vmFactory)[ScheduleViewModel::class.java]
         registerObservers()
@@ -56,7 +56,7 @@ class ScheduleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpScheduleActionBar()
         bindScheduleListToAdapter()
-        viewModel.fetchSchedules(scheduleLocation)
+        viewModel.fetchSchedules(scheduleInfo)
     }
 
     private fun registerObservers() {
@@ -80,7 +80,7 @@ class ScheduleFragment : Fragment() {
         scheduleList.layoutManager = LinearLayoutManager(context).apply {
             orientation = RecyclerView.VERTICAL
         }
-        scheduleList.adapter = ScheduleAdapter(scheduleLocation)
+        scheduleList.adapter = ScheduleAdapter(scheduleInfo)
     }
 
     private fun setUpScheduleActionBar() {
@@ -95,14 +95,14 @@ class ScheduleFragment : Fragment() {
     }
 
     private fun setToolbarCodeLabelText(toolbar: Toolbar) {
-        toolbar.originLabel.text = scheduleLocation.origin.label
-        toolbar.originCode.text = scheduleLocation.origin.code
+        toolbar.originLabel.text = scheduleInfo.origin.label
+        toolbar.originCode.text = scheduleInfo.origin.code
 
-        toolbar.destinationLabel.text = scheduleLocation.destination.label
-        toolbar.destinationCode.text = scheduleLocation.destination.code
+        toolbar.destinationLabel.text = scheduleInfo.destination.label
+        toolbar.destinationCode.text = scheduleInfo.destination.code
     }
 
     companion object {
-        const val SCHEDULE_LOCATION_TAG = "scheduleLocation"
+        const val SCHEDULE_LOCATION_TAG = "scheduleInfo"
     }
 }

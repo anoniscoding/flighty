@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.airlineapp.R
 import com.example.airlineapp.data.LocationData
-import com.example.airlineapp.data.ScheduleLocation
+import com.example.airlineapp.data.ScheduleInfo
 import com.example.airlineapp.databinding.HomeFragmentBinding
 import com.example.airlineapp.ui.LandingScreenActivity
 import com.example.airlineapp.ui.schedule.ScheduleFragment
@@ -87,10 +87,10 @@ class HomeFragment : Fragment() {
     private fun registerObservers() {
         viewModel.originError.observe(this, Observer { binding.origin.error = it })
         viewModel.destinationError.observe(this, Observer { binding.destination.error = it })
-        viewModel.scheduleLocation.observe(this, Observer { onScheduleLocationReceived(it) })
+        viewModel.scheduleInfo.observe(this, Observer { onScheduleLocationReceived(it) })
     }
 
-    private fun onScheduleLocationReceived(it: ScheduleLocation?) {
+    private fun onScheduleLocationReceived(it: ScheduleInfo?) {
         val bundle = Bundle().apply {
             putParcelable(SCHEDULE_LOCATION_TAG, it)
         }

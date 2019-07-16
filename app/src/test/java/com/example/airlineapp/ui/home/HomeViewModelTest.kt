@@ -23,7 +23,7 @@ class HomeViewModelTest {
         val viewModel = HomeViewModel()
         viewModel.onSearchFlightClick()
         assertEquals("Please provide origin location", viewModel.originError.value)
-        assertEquals(null, viewModel.scheduleLocation.value)
+        assertEquals(null, viewModel.scheduleInfo.value)
     }
 
     @Test
@@ -34,7 +34,7 @@ class HomeViewModelTest {
             onSearchFlightClick()
         }
         assertEquals("Please provide destination location", viewModel.destinationError.value)
-        assertEquals(null, viewModel.scheduleLocation.value)
+        assertEquals(null, viewModel.scheduleInfo.value)
     }
 
     @Test
@@ -46,7 +46,7 @@ class HomeViewModelTest {
             onSearchFlightClick()
         }
 
-        val scheduleLocation = viewModel.scheduleLocation.value
+        val scheduleLocation = viewModel.scheduleInfo.value
         assertEquals("LOS", scheduleLocation!!.origin.code)
         assertEquals("FRA", scheduleLocation.destination.code)
     }

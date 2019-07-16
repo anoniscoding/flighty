@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.airlineapp.data.Schedule
-import com.example.airlineapp.data.ScheduleLocation
+import com.example.airlineapp.data.ScheduleInfo
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -21,9 +21,9 @@ class ScheduleViewModel @Inject constructor(private val _repository: ScheduleCon
     private val _totalSchedules = MutableLiveData<String>()
     val totalSchedules: LiveData<String> = _totalSchedules
 
-    fun fetchSchedules(location: ScheduleLocation) {
+    fun fetchSchedules(info: ScheduleInfo) {
         _compositeDisposable.add(
-            _repository.getAirlineSchedules(location).subscribe(this::onAirlineScheduleSuccess, this::onError)
+            _repository.getAirlineSchedules(info).subscribe(this::onAirlineScheduleSuccess, this::onError)
         )
     }
 

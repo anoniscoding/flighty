@@ -25,9 +25,9 @@ class ScheduleViewModelTest {
     private lateinit var _repository: ScheduleContract.Repository
 
     @Test
-    fun `throw_error_when_fetch_sechudules_request_fails`() {
+    fun `throw_error_when_fetch_schedules_request_fails`() {
         val error = Throwable("request error message")
-        val scheduleLocation = ScheduleLocation(LocationData.LAGOS, LocationData.FRANCE)
+        val scheduleLocation = ScheduleInfo(LocationData.LAGOS, LocationData.FRANCE)
         `when`(_repository.getAirlineSchedules(scheduleLocation)).thenReturn(Observable.error(error))
         val viewModel = ScheduleViewModel(_repository)
         viewModel.fetchSchedules(scheduleLocation)
@@ -35,8 +35,8 @@ class ScheduleViewModelTest {
     }
 
     @Test
-    fun `retrieve_schedules_list_on_fetch_sechudules_success`() {
-        val scheduleLocation = ScheduleLocation(LocationData.LAGOS, LocationData.FRANCE)
+    fun `retrieve_schedules_list_on_fetch_schedules_success`() {
+        val scheduleLocation = ScheduleInfo(LocationData.LAGOS, LocationData.FRANCE)
         val schedules = listOf(
             Schedule().apply {
                 totalJourney = TotalJourney()
