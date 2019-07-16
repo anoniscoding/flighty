@@ -1,26 +1,17 @@
 package com.example.airlineapp.ui.schedule
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.airlineapp.data.*
+import com.example.airlineapp.ui.BaseTest
 import io.reactivex.Observable
-import org.junit.Rule
+import junit.framework.Assert.assertEquals
 import org.junit.Test
-import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
-import junit.framework.Assert.assertEquals
 
 @RunWith(MockitoJUnitRunner::class)
-class ScheduleViewModelTest {
-
-    //Prevents error : Method getMainLooper in android.os.Looper not mocked
-    //Because livedata updates the its value on the main thread, this helps to bypass that
-    @Rule
-    @JvmField
-    var rule: TestRule = InstantTaskExecutorRule()
-
+class ScheduleViewModelTest: BaseTest() {
     @Mock
     private lateinit var _repository: ScheduleContract.Repository
 
