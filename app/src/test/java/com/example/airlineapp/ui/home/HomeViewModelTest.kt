@@ -23,12 +23,6 @@ class HomeViewModelTest {
     @Rule
     @JvmField var rule: TestRule = InstantTaskExecutorRule()
 
-
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
-
     @Test
     fun `emit_error_when_origin_location_is_empty_when_search_flight_is_called`() {
         val viewModel = HomeViewModel()
@@ -49,17 +43,17 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `emit_schedule_location_when_origin_destination_locations_are_present`() {
+    fun `emit_schedule_location_when_origin_destination_locations_are_present_when_search_flight_is_called`() {
         val viewModel = HomeViewModel()
         viewModel.apply {
             origin.value = "Lagos"
             destination.value = "France"
             onSearchFlightClick()
         }
+
         val scheduleLocation = viewModel.scheduleLocation.value
         assertEquals("LOS", scheduleLocation!!.origin.code)
         assertEquals("FRA", scheduleLocation.destination.code)
-
     }
 
 }
