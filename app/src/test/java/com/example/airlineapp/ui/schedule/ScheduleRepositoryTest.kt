@@ -59,10 +59,7 @@ class ScheduleRepositoryTest {
             }
         )
 
-        val scheduleResource = ScheduleResource().apply {
-            schedule = schedules
-        }
-
+        val scheduleResource = ScheduleResource().apply { schedule = schedules }
         val jsonStr = Gson().toJson(scheduleResource)
         val result = Gson().fromJson<JsonObject>(jsonStr, JsonObject::class.java)
 
