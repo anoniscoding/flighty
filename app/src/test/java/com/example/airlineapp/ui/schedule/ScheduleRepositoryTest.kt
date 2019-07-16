@@ -2,6 +2,7 @@ package com.example.airlineapp.ui.schedule
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.airlineapp.data.*
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import org.junit.Rule
 import org.junit.Test
@@ -58,9 +59,16 @@ class ScheduleRepositoryTest {
             }
         )
 
+        val scheduleResource = ScheduleResource().apply {
+            schedule = schedules
+        }
+
+        val jsonStr = Gson().toJson(scheduleResource)
+        val result = Gson().fromJson<JsonObject>(jsonStr, JsonObject::class.java)
+
         val date = GregorianCalendar(2014, Calendar.FEBRUARY, 11).time
         val scheduleLocation = ScheduleInfo(LocationData.LAGOS, LocationData.FRANCE, date)
-        `when`(_luftansaService.fetchSchedules("LOS", "FRA", "2014-02-11")).thenReturn(Observable.just(JsonObject()))
+        `when`(_luftansaService.fetchSchedules("LOS", "FRA", "2014-02-11")).thenReturn(Observable.just(result))
         val scheduleRepository = ScheduleRepository(_luftansaService, Schedulers.trampoline(), Schedulers.trampoline())
         scheduleRepository.getAirlineSchedules(scheduleLocation).test().assertComplete().assertNoErrors()
     }
