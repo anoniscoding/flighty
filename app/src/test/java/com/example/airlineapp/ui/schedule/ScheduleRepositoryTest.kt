@@ -1,6 +1,7 @@
 package com.example.airlineapp.ui.schedule
 
 import com.example.airlineapp.data.*
+import com.example.airlineapp.request.LuftansaService
 import com.example.airlineapp.ui.BaseTest
 import com.google.gson.Gson
 import com.google.gson.JsonObject

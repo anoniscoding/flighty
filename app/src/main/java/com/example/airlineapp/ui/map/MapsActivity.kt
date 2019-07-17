@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.airlineapp.R
 import com.example.airlineapp.data.ScheduleInfo
-import com.example.airlineapp.ui.schedule.ScheduleFragment.Companion.SCHEDULE_LOCATION_TAG
+import com.example.airlineapp.ui.schedule.ScheduleFragment.Companion.SCHEDULE_INFO_TAG
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -22,7 +22,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-        _scheduleInfo = intent.getParcelableExtra(SCHEDULE_LOCATION_TAG)
+        _scheduleInfo = intent.getParcelableExtra(SCHEDULE_INFO_TAG)
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment

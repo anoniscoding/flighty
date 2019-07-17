@@ -1,4 +1,4 @@
-package com.example.airlineapp.data
+package com.example.airlineapp.request
 
 import com.google.gson.JsonObject
 import io.reactivex.Observable

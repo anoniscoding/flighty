@@ -1,8 +1,8 @@
 package com.example.airlineapp.di
 
 import android.app.Application
-import com.example.airlineapp.data.LuftansaAuth
-import com.example.airlineapp.data.LuftansaService
+import com.example.airlineapp.request.LuftansaAuth
+import com.example.airlineapp.request.LuftansaService
 import com.example.airlineapp.di.NetworkModule.NetworkConstant.CONNECT_TIMEOUT
 import com.example.airlineapp.di.NetworkModule.NetworkConstant.READ_TIMEOUT
 import com.example.airlineapp.di.NetworkModule.NetworkConstant.WRITE_TIMEOUT

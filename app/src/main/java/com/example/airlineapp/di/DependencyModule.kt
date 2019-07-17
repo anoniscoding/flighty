@@ -1,6 +1,6 @@
 package com.example.airlineapp.di
 
-import com.example.airlineapp.data.LuftansaService
+import com.example.airlineapp.request.LuftansaService
 import com.example.airlineapp.ui.schedule.ScheduleContract
 import com.example.airlineapp.ui.schedule.ScheduleRepository
 import dagger.Module

@@ -36,7 +36,7 @@ class ScheduleFragment : Fragment() {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
         arguments?.let {
-            scheduleInfo = it.getParcelable(SCHEDULE_LOCATION_TAG)
+            scheduleInfo = it.getParcelable(SCHEDULE_INFO_TAG)
         }
         viewModel = ViewModelProviders.of(this, vmFactory)[ScheduleViewModel::class.java]
         registerObservers()
@@ -103,6 +103,6 @@ class ScheduleFragment : Fragment() {
     }
 
     companion object {
-        const val SCHEDULE_LOCATION_TAG = "scheduleInfo"
+        const val SCHEDULE_INFO_TAG = "scheduleInfo"
     }
 }

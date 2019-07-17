@@ -13,7 +13,7 @@ import com.example.airlineapp.data.Schedule
 import com.example.airlineapp.data.ScheduleInfo
 import com.example.airlineapp.data.TotalJourney
 import com.example.airlineapp.ui.map.MapsActivity
-import com.example.airlineapp.ui.schedule.ScheduleFragment.Companion.SCHEDULE_LOCATION_TAG
+import com.example.airlineapp.ui.schedule.ScheduleFragment.Companion.SCHEDULE_INFO_TAG
 import com.example.airlineapp.utils.BindableAdapter
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.RoundedCornerTreatment
@@ -62,7 +62,7 @@ class ScheduleAdapter(private val _scheduleInfo: ScheduleInfo) :
             setCardBackground()
             view.viewBtn.setOnClickListener {
                 val intent = Intent(it.context, MapsActivity::class.java).apply {
-                    putExtra(SCHEDULE_LOCATION_TAG, _scheduleInfo)
+                    putExtra(SCHEDULE_INFO_TAG, _scheduleInfo)
                 }
                 it.context.startActivity(intent)
             }

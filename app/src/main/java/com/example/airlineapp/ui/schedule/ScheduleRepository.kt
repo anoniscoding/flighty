@@ -3,9 +3,9 @@ package com.example.airlineapp.ui.schedule
 import com.example.airlineapp.data.*
 import com.example.airlineapp.extensions.convertTo
 import com.example.airlineapp.data.ScheduleInfo
+import com.example.airlineapp.request.LuftansaService
 import io.reactivex.Observable
 import io.reactivex.Scheduler
-import java.text.SimpleDateFormat
 
 class ScheduleRepository(
     private val _luftansaService: LuftansaService,

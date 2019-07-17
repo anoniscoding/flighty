@@ -19,7 +19,7 @@ import com.example.airlineapp.data.ScheduleInfo
 import com.example.airlineapp.databinding.HomeFragmentBinding
 import com.example.airlineapp.ui.LandingScreenActivity
 import com.example.airlineapp.ui.schedule.ScheduleFragment
-import com.example.airlineapp.ui.schedule.ScheduleFragment.Companion.SCHEDULE_LOCATION_TAG
+import com.example.airlineapp.ui.schedule.ScheduleFragment.Companion.SCHEDULE_INFO_TAG
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.RoundedCornerTreatment
 import com.google.android.material.shape.ShapePathModel
@@ -92,7 +92,7 @@ class HomeFragment : Fragment() {
 
     private fun onScheduleLocationReceived(it: ScheduleInfo?) {
         val bundle = Bundle().apply {
-            putParcelable(SCHEDULE_LOCATION_TAG, it)
+            putParcelable(SCHEDULE_INFO_TAG, it)
         }
 
         moveToScheduleFragment(bundle)

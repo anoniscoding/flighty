@@ -2,8 +2,7 @@ package com.example.airlineapp.di
 
 import android.content.SharedPreferences
 import com.example.airlineapp.BuildConfig
-import com.example.airlineapp.data.LuftansaAuth
-import com.example.airlineapp.utils.AppConstants
+import com.example.airlineapp.request.LuftansaAuth
 import com.example.airlineapp.utils.HttpCodes
 import com.example.airlineapp.utils.PrefsConstants.AUTH_TOKEN
 import dagger.Lazy
