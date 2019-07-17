@@ -7,6 +7,6 @@ import io.reactivex.Observable
 interface ScheduleContract {
 
     interface Repository {
-        fun getAirlineSchedules(scheduleInfo: ScheduleInfo): Observable<List<Schedule>>
+        fun fetchSchedules(scheduleInfo: ScheduleInfo): Observable<List<Schedule>>
     }
 }

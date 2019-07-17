@@ -27,7 +27,7 @@ class ScheduleRepositoryTest : BaseTest() {
         val scheduleLocation = ScheduleInfo(LocationData.LAGOS, LocationData.FRANCE, date)
         `when`(_luftansaService.fetchSchedules("LOS", "FRA", "2014-02-11")).thenReturn(Observable.error(error))
         val scheduleRepository = ScheduleRepository(_luftansaService, Schedulers.trampoline(), Schedulers.trampoline())
-        scheduleRepository.getAirlineSchedules(scheduleLocation).test().assertError(error)
+        scheduleRepository.fetchSchedules(scheduleLocation).test().assertError(error)
     }
 
     @Test
@@ -59,7 +59,7 @@ class ScheduleRepositoryTest : BaseTest() {
         val scheduleLocation = ScheduleInfo(LocationData.LAGOS, LocationData.FRANCE, date)
         `when`(_luftansaService.fetchSchedules("LOS", "FRA", "2014-02-11")).thenReturn(Observable.just(result))
         val scheduleRepository = ScheduleRepository(_luftansaService, Schedulers.trampoline(), Schedulers.trampoline())
-        scheduleRepository.getAirlineSchedules(scheduleLocation).test().assertComplete().assertNoErrors()
+        scheduleRepository.fetchSchedules(scheduleLocation).test().assertComplete().assertNoErrors()
     }
 
 }

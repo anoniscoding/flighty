@@ -13,7 +13,7 @@ class ScheduleRepository(
     private val _observeOnScheduler: Scheduler
 ) : ScheduleContract.Repository {
 
-    override fun getAirlineSchedules(scheduleInfo: ScheduleInfo): Observable<List<Schedule>> {
+    override fun fetchSchedules(scheduleInfo: ScheduleInfo): Observable<List<Schedule>> {
         return _luftansaService.fetchSchedules(scheduleInfo.origin.code, scheduleInfo.destination.code, scheduleInfo.fromStartDate)
             .subscribeOn(_subscribeOnScheduler)
             .map {

@@ -23,11 +23,11 @@ class ScheduleViewModel @Inject constructor(private val _repository: ScheduleCon
 
     fun fetchSchedules(info: ScheduleInfo) {
         _compositeDisposable.add(
-            _repository.getAirlineSchedules(info).subscribe(this::onAirlineScheduleSuccess, this::onError)
+            _repository.fetchSchedules(info).subscribe(this::onFetchScheduleSuccess, this::onError)
         )
     }
 
-    private fun onAirlineScheduleSuccess(flightSchedules: List<Schedule>) {
+    private fun onFetchScheduleSuccess(flightSchedules: List<Schedule>) {
         _schedules.value = flightSchedules
         _totalSchedules.value = flightSchedules.size.toString()
     }

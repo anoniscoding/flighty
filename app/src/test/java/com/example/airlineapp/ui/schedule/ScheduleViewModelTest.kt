@@ -19,7 +19,7 @@ class ScheduleViewModelTest: BaseTest() {
     fun `throw_error_when_fetch_schedules_request_fails`() {
         val error = Throwable("request error message")
         val scheduleLocation = ScheduleInfo(LocationData.LAGOS, LocationData.FRANCE)
-        `when`(_repository.getAirlineSchedules(scheduleLocation)).thenReturn(Observable.error(error))
+        `when`(_repository.fetchSchedules(scheduleLocation)).thenReturn(Observable.error(error))
         val viewModel = ScheduleViewModel(_repository)
         viewModel.fetchSchedules(scheduleLocation)
         assertEquals("request error message", viewModel.errorMsg.value)
@@ -47,7 +47,7 @@ class ScheduleViewModelTest: BaseTest() {
             }
         )
 
-        `when`(_repository.getAirlineSchedules(scheduleLocation)).thenReturn(Observable.just(schedules))
+        `when`(_repository.fetchSchedules(scheduleLocation)).thenReturn(Observable.just(schedules))
         val viewModel = ScheduleViewModel(_repository)
         viewModel.fetchSchedules(scheduleLocation)
         assertEquals(schedules.size.toString(), viewModel.totalSchedules.value)
