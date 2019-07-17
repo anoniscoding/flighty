@@ -14,7 +14,7 @@ import javax.inject.Inject
 class AuthInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>, private val _prefs: SharedPreferences) : Interceptor{
     override fun intercept(chain: Interceptor.Chain): Response {
         val token = _prefs.getString(AUTH_TOKEN, "")
-        val request: Request = getRequestWithOrWithoutHeaders(chain, token)
+        val request: Request = getRequestWithOrWithoutAuthorizationHeader(chain, token)
         val response = chain.proceed(request)
 
         if (response.code() == HttpCodes.UNAUTHORIZED.code) {
@@ -29,7 +29,7 @@ class AuthInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>,
         return response
     }
 
-    private fun getRequestWithOrWithoutHeaders(chain: Interceptor.Chain, token: String?): Request {
+    private fun getRequestWithOrWithoutAuthorizationHeader(chain: Interceptor.Chain, token: String?): Request {
         return if (getRequestUrl(chain) != BuildConfig.TOKEN_URL) {
             getRequestWithAuthorizationHeader(chain, token)
         } else {

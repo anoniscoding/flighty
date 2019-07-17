@@ -35,9 +35,7 @@ class ScheduleFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
-        arguments?.let {
-            scheduleInfo = it.getParcelable(SCHEDULE_INFO_TAG)
-        }
+        arguments?.let { scheduleInfo = it.getParcelable(SCHEDULE_INFO_TAG) }
         viewModel = ViewModelProviders.of(this, vmFactory)[ScheduleViewModel::class.java]
         registerObservers()
     }
@@ -70,10 +68,10 @@ class ScheduleFragment : Fragment() {
         errorLabel.text = it
     }
 
-    private fun onTotalSchedulesReceived(it: String?) {
+    private fun onTotalSchedulesReceived(totalSchedule: String?) {
         progressLoader.hide()
         flightDetailsGroup.show()
-        totalSchedules.text = it
+        totalSchedules.text = totalSchedule
     }
 
     private fun bindScheduleListToAdapter() {
