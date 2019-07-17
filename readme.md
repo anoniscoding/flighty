@@ -1,12 +1,12 @@
-#Flight Documentation
+# Flight Documentation
 
-#Architecture
+# Architecture
 Model-View-ViewModel
 
-#Data package
+# Data package
 This contains all the data models associated with fetching the schedule data
 
-#DI package
+# DI package
 This contains dagger setup for dependency injection within the app. The `AppModule` class contains all app wide dependencies.
 The `AuthInterceptor` class manages token generation for the endpoints. The `BuilderModule` class registers fragments that
 are eligible for dependency injection. The `NetworkModule` setup all the required dependency for making network requests.
@@ -14,15 +14,15 @@ are eligible for dependency injection. The `NetworkModule` setup all the require
 The `ViewModelFactory` class takes an runtime generated map as parameter that contains the providers for all viewModels 
 registered in the `ViewModelsModule` class. The `ViewModelFactoryModule` is responsible for providing the `ViewModelFactory`.
 
-#Extensions package
+# Extensions package
 This contains custom extension functions for classes within the codebase
 
-#Request package
+# Request package
 This contains all the Retrofit request interfaces within the codebase
 
-#UI package
+# UI package
 This contains all user interface related code. Model-View-ViewModel is used here.
 
-#Utils 
+# Utils 
 This contains utility classes such as the `BindingUtils` class. This class is a bindable adapter responsible for populating
 recycler views with data.
