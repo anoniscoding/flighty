@@ -14,20 +14,21 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     val destination = MutableLiveData<String>()
     val destinationError = MutableLiveData<String>()
 
-    private val _scheduleLocation = MutableLiveData<ScheduleInfo>()
-    val scheduleInfo : LiveData<ScheduleInfo> = _scheduleLocation
+    private val _scheduleInfo = MutableLiveData<ScheduleInfo>()
+    val scheduleInfo : LiveData<ScheduleInfo> = _scheduleInfo
 
     fun onSearchFlightClick() {
         when {
             origin.value.isNullOrEmpty() -> originError.value = "Please provide origin location"
             destination.value.isNullOrEmpty() -> destinationError.value = "Please provide destination location"
-            else -> {
-                val originLocation = LocationData.valueOf(origin.value!!.toUpperCase())
-                val destinationLocation = LocationData.valueOf(destination.value!!.toUpperCase())
-                _scheduleLocation.value =
-                    ScheduleInfo(originLocation, destinationLocation)
-            }
+            else -> emitScheduleInfo()
         }
+    }
+
+    private fun emitScheduleInfo() {
+        val originLocation = LocationData.valueOf(origin.value!!.toUpperCase())
+        val destinationLocation = LocationData.valueOf(destination.value!!.toUpperCase())
+        _scheduleInfo.value = ScheduleInfo(originLocation, destinationLocation)
     }
 }
 
