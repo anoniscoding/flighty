@@ -1,9 +1,9 @@
-# Flight Documentation
+# Flightly Documentation
 
 ## Architecture
 Model-View-ViewModel
 
-# Data package
+## Data package
 This contains all the data models associated with fetching the schedule data
 
 ## DI package
