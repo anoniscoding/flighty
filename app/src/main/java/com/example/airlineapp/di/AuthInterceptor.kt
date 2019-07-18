@@ -2,6 +2,7 @@ package com.example.airlineapp.di
 
 import android.content.SharedPreferences
 import com.example.airlineapp.BuildConfig
+import com.example.airlineapp.extensions.url
 import com.example.airlineapp.request.LuftansaAuth
 import com.example.airlineapp.utils.HttpCodes
 import com.example.airlineapp.utils.PrefsConstants.AUTH_TOKEN
@@ -30,14 +31,12 @@ class AuthInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>,
     }
 
     private fun getRequestWithOrWithoutAuthorizationHeader(chain: Interceptor.Chain, token: String?): Request {
-        return if (getRequestUrl(chain) != BuildConfig.TOKEN_URL) {
+        return if (chain.url() != BuildConfig.TOKEN_URL) {
             getRequestWithAuthorizationHeader(chain, token)
         } else {
             chain.request().newBuilder().build()
         }
     }
-
-    private fun getRequestUrl(chain: Interceptor.Chain) = (chain.request().tag() as Request).url().url().toString()
 
     private fun getRequestWithAuthorizationHeader(chain: Interceptor.Chain, token: String?): Request {
         return chain.request().newBuilder()
