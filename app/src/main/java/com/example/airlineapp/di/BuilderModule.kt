@@ -5,7 +5,7 @@ import com.example.airlineapp.ui.schedule.ScheduleFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-@Module(includes = [ViewModelFactoryModule::class, DependencyModule::class])
+@Module(includes = [ViewModelFactoryModule::class, ViewModelModule::class, DependencyModule::class])
 abstract class BuilderModule {
 
     @ContributesAndroidInjector

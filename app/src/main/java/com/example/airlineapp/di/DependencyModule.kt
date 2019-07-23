@@ -14,7 +14,10 @@ abstract class DependencyModule {
 
     @Binds
     abstract fun bindScheduleUseCase(scheduleContract: ScheduleRepository): ScheduleContract.Repository
+}
 
+
+@Module abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(ScheduleViewModel::class)
