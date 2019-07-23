@@ -6,11 +6,13 @@ import com.example.airlineapp.data.ScheduleInfo
 import com.example.airlineapp.request.LuftansaService
 import io.reactivex.Observable
 import io.reactivex.Scheduler
+import javax.inject.Inject
+import javax.inject.Named
 
-class ScheduleRepository(
+class ScheduleRepository @Inject constructor(
     private val _luftansaService: LuftansaService,
-    private val _subscribeOnScheduler: Scheduler,
-    private val _observeOnScheduler: Scheduler
+    @Named("SCHEDULER_IO") private val _subscribeOnScheduler: Scheduler,
+    @Named("SCHEDULER_MAIN_THREAD") private val _observeOnScheduler: Scheduler
 ) : ScheduleContract.Repository {
 
     override fun fetchSchedules(scheduleInfo: ScheduleInfo): Observable<List<Schedule>> {

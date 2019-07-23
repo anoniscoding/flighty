@@ -7,7 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.airlineapp.R
 import com.example.airlineapp.ui.LandingScreenActivity
 
-class SplashActivity : AppCompatActivity() {
+class
+SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -20,7 +20,7 @@ class AuthInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>,
 
         if (response.code() == HttpCodes.UNAUTHORIZED.code) {
             synchronized(this) {
-                val newToken = regenerateToken()
+                val newToken = generateToken()
                 _prefs.edit().putString(AUTH_TOKEN, newToken).apply()
                 val newRequest = getRequestWithAuthorizationHeader(chain, newToken)
                 return chain.proceed(newRequest)
@@ -44,7 +44,7 @@ class AuthInterceptor @Inject constructor(private val _auth: Lazy<LuftansaAuth>,
             .build()
     }
 
-    private fun regenerateToken(): String {
+    private fun generateToken(): String {
         val result = _auth.get().fetchToken(
             BuildConfig.CLIENT_ID,
             BuildConfig.CLIENT_SECRET,
