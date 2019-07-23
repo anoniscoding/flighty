@@ -12,7 +12,7 @@ The `AuthInterceptor` class manages token generation for the endpoints. The `Bui
 are eligible for dependency injection. The `NetworkModule` setup all the required dependency for making network requests.
 
 The `ViewModelFactory` class takes a runtime generated map as parameter that contains the providers for all viewModels 
-registered in the `ViewModelsModule` class. The `ViewModelFactoryModule` is responsible for providing the `ViewModelFactory`.
+registered in the `DependencyModule` class. The `ViewModelFactoryModule` is responsible for providing the `ViewModelFactory`.
 
 ## Extensions package
 This contains custom extension functions for classes within the codebase
